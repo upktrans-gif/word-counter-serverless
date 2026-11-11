@@ -1,0 +1,24 @@
+name: Test Serverless Word Counter
+
+on: [push]
+
+jobs:
+  invoke-lambda:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run Lambda Function Locally with Event
+        run: |
+          python -c "
+          import json
+          from hello_world.app import lambda_handler
+          with open('events/event.json', encoding='utf-8') as f:
+              event = json.load(f)
+          response = lambda_handler(event, None)
+          print('STATUS:', response['statusCode'])
+          print('RESPONSE BODY:', response['body'])
+          assert response['statusCode'] == 200
+          "
