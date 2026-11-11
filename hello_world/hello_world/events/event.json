@@ -1,0 +1,8 @@
+{
+  "httpMethod": "POST",
+  "path": "/count",
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "body": "{\"message\": \"Безсерверні обчислення в хмарних технологіях працюють швидко та ефективно\"}"
+}
